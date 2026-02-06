@@ -3,41 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTR Yomi的实用拓展模组 (YUM) - MTR 3附属模组</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <title>MTR-Yomi的实用拓展</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
-            --primary: #2c3e50;
-            --primary-dark: #1a252f;
-            --primary-light: #3498db;
-            --secondary: #e74c3c;
-            --secondary-light: #ff7f6b;
-            --accent: #f39c12;
-            --accent-light: #f1c40f;
-            --text-primary: #2c3e50;
-            --text-secondary: #7f8c8d;
-            --divider: #ecf0f1;
-            --background: #f8f9fa;
+            --primary: #004d40;
+            --primary-dark: #00251a;
+            --primary-light: #39796b;
+            --secondary: #00695c;
+            --secondary-light: #439889;
+            --accent: #00796b;
+            --accent-light: #48a999;
+            --text-primary: #263238;
+            --text-secondary: #546e7a;
+            --divider: #e0e0e0;
+            --background: #f5f7fa;
             --surface: #ffffff;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --info: #3498db;
-            --error: #e74c3c;
+            --success: #2e7d32;
+            --warning: #f57c00;
+            --info: #0288d1;
+            --error: #d32f2f;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Microsoft YaHei', '微软雅黑', sans-serif;
         }
         
         body {
             background-color: var(--background);
             color: var(--text-primary);
             line-height: 1.6;
+            font-weight: 400;
         }
         
         .container {
@@ -48,7 +48,7 @@
         
         /* Material Design 顶部应用栏 */
         .app-bar {
-            background-color: rgba(44, 62, 80, 0.95);
+            background-color: rgba(0, 77, 64, 0.85);
             color: white;
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
             padding: 16px;
@@ -70,12 +70,12 @@
             align-items: center;
             gap: 12px;
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 500;
         }
         
         .app-title i {
             font-size: 2rem;
-            color: var(--accent);
+            color: var(--accent-light);
         }
         
         .logo-text {
@@ -101,19 +101,36 @@
         .nav-link {
             color: rgba(255,255,255,0.9);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 400;
             padding: 8px 16px;
-            border-radius: 2px;
+            border-radius: 4px;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
         }
         
         .nav-link:hover {
-            background-color: rgba(255,255,255,0.15);
+            background-color: rgba(255,255,255,0.1);
             transform: translateY(-2px);
         }
         
+        .nav-link:hover::before {
+            left: 100%;
+        }
+        
         .main {
-            background: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.9)), 
+            background: linear-gradient(rgba(0, 37, 26, 0.85), rgba(0, 37, 26, 0.9)), 
                         url('https://gp3e.saobby.com/i/xlnUreQm81bkCQGf.png');
             background-size: cover;
             background-position: center;
@@ -131,7 +148,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(52, 152, 219, 0.2) 0%, rgba(231, 76, 60, 0.2) 100%);
+            background: linear-gradient(45deg, rgba(0, 105, 92, 0.2) 0%, rgba(0, 121, 107, 0.2) 100%);
             z-index: 1;
         }
         
@@ -145,7 +162,7 @@
         
         .main-title {
             font-size: 3.5rem;
-            font-weight: 800;
+            font-weight: 600;
             margin-bottom: 20px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
@@ -159,7 +176,7 @@
         
         .highlight {
             color: var(--accent-light);
-            font-weight: 500;
+            font-weight: 400;
         }
         
         .btn-group {
@@ -169,13 +186,13 @@
             flex-wrap: wrap;
         }
         
-        /* Material Design 按钮 - 小圆角 */
+        /* Material Design 按钮 - 适当圆角 */
         .btn {
             display: inline-flex;
             align-items: center;
             padding: 14px 28px;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 500;
             text-transform: uppercase;
             text-decoration: none;
             border-radius: 4px;
@@ -183,10 +200,23 @@
             transition: all 0.3s ease;
             border: none;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
         }
         
         .btn i {
             margin-right: 10px;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
         }
         
         .btn-primary {
@@ -195,8 +225,12 @@
         }
         
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(243, 156, 18, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 121, 107, 0.4);
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
         }
         
         .btn-outline {
@@ -208,10 +242,14 @@
         .btn-outline:hover {
             background-color: rgba(255,255,255,0.15);
             border-color: white;
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
         }
         
-        /* Material Design 卡片 - 小圆角 */
+        .btn-outline:hover::before {
+            left: 100%;
+        }
+        
+        /* Material Design 卡片 - 适当圆角 */
         .section {
             padding: 80px 0;
         }
@@ -222,7 +260,7 @@
         
         .section-title {
             font-size: 2.5rem;
-            font-weight: 700;
+            font-weight: 500;
             margin-bottom: 48px;
             text-align: center;
             color: var(--primary);
@@ -243,7 +281,7 @@
         
         .section-subtitle {
             font-size: 1.3rem;
-            font-weight: 400;
+            font-weight: 300;
             color: var(--text-secondary);
             text-align: center;
             max-width: 800px;
@@ -258,16 +296,17 @@
         
         .card {
             background-color: var(--surface);
-            border-radius: 2px;
+            border-radius: 4px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-top: 3px solid var(--primary-light);
+            backdrop-filter: blur(5px);
         }
         
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
         
         .card-header {
@@ -283,7 +322,7 @@
             background-color: rgba(255,255,255,0.2);
             width: 56px;
             height: 56px;
-            border-radius: 1px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -292,7 +331,7 @@
         
         .card-title {
             font-size: 1.4rem;
-            font-weight: 600;
+            font-weight: 500;
         }
         
         .card-content {
@@ -326,7 +365,7 @@
             margin-right: 10px;
         }
         
-        /* 功能展示区域 - 小圆角 */
+        /* 功能展示区域 - 适当圆角 */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -336,15 +375,16 @@
         
         .feature-item {
             background-color: var(--surface);
-            border-radius: 1px;
+            border-radius: 4px;
             padding: 25px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             border-left: 4px solid var(--info);
             transition: transform 0.3s;
+            backdrop-filter: blur(5px);
         }
         
         .feature-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
         }
         
         .feature-item.upcoming {
@@ -353,7 +393,7 @@
         }
         
         .feature-title {
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 12px;
             color: var(--primary);
             font-size: 1.2rem;
@@ -365,9 +405,9 @@
         .badge {
             display: inline-block;
             padding: 4px 12px;
-            border-radius: 1px;
+            border-radius: 4px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 500;
             margin-left: auto;
         }
         
@@ -386,7 +426,7 @@
             color: white;
         }
         
-        /* 截图区域 - 小圆角 */
+        /* 截图区域 - 适当圆角 */
         .screenshot-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -395,14 +435,14 @@
         }
         
         .screenshot-container {
-            border-radius: 1px;
+            border-radius: 4px;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s;
         }
         
         .screenshot-container:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
         }
         
         .screenshot {
@@ -416,12 +456,12 @@
         .caption {
             padding: 15px;
             background-color: var(--surface);
-            font-weight: 500;
+            font-weight: 400;
             color: var(--text-primary);
             text-align: center;
         }
         
-        /* 下载区域 - 小圆角 */
+        /* 下载区域 - 适当圆角 */
         .download-section {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             color: white;
@@ -434,16 +474,16 @@
             background: linear-gradient(135deg, var(--accent), var(--accent-light));
             color: white;
             padding: 8px 24px;
-            border-radius: 1px;
-            font-weight: 600;
+            border-radius: 4px;
+            font-weight: 500;
             margin: 20px 0;
             font-size: 1.1rem;
-            box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 121, 107, 0.3);
         }
         
         .qq-group {
             background-color: rgba(255,255,255,0.1);
-            border-radius: 1px;
+            border-radius: 4px;
             padding: 25px;
             max-width: 500px;
             margin: 40px auto 0;
@@ -457,11 +497,11 @@
         
         .qq-code {
             font-size: 2.5rem;
-            font-weight: 800;
+            font-weight: 500;
             color: white;
             background: rgba(0,0,0,0.2);
             padding: 15px 30px;
-            border-radius: 1px;
+            border-radius: 4px;
             display: inline-block;
             margin: 15px 0;
             letter-spacing: 2px;
@@ -491,6 +531,7 @@
             color: rgba(255,255,255,0.8);
             text-decoration: none;
             transition: color 0.3s;
+            font-weight: 300;
         }
         
         .footer-link:hover {
@@ -542,15 +583,15 @@
             <div class="app-title">
                 <i class="fas fa-subway"></i>
                 <div class="logo-text">
-                    <span>MTR Yomi 实用工具模组</span>
-                    <span class="logo-subtitle">YUM - 专为MTR 3设计</span>
+                    <span>Yomi的MTR实用拓展</span>
+                    <span class="logo-subtitle">适用于MTR3</span>
                 </div>
             </div>
             <div class="spacer"></div>
             <div class="nav-links">
-                <a href="#features" class="nav-link">核心功能</a>
-                <a href="#upcoming" class="nav-link">即将上线</a>
-                <a href="#screenshots" class="nav-link">效果展示</a>
+                <a href="#features" class="nav-link">目前内容</a>
+                <a href="#upcoming" class="nav-link">新内容</a>
+                <a href="#screenshots" class="nav-link">展示</a>
                 <a href="#download" class="nav-link">下载安装</a>
             </div>
         </div>
@@ -558,15 +599,15 @@
     
     <section class="main">
         <div class="main-content">
-            <h1 class="main-title">MTR Yomi 实用工具模组</h1>
-            <p class="main-subtitle">🚇 <span class="highlight">Yomi Utility Mod (YUM)</span> - 专为 MTR 3 设计的全新附属模组！</p>
-            <p class="main-subtitle">让您的铁路系统更智能、更真实、更便捷！</p>
+            <h1 class="main-title">Yomi的MTR实用拓展</h1>
+            <p class="main-subtitle">🚇🚇 <span class="highlight"></span>全新附属模组，适用于MTR3</p>
+            <p class="main-subtitle">让MTR的电梯更加避震</p>
             <div class="btn-group">
                 <a href="https://modrinth.com/mod/mtr-yum" class="btn btn-primary">
                     <i class="material-icons">download</i>立即下载
                 </a>
-                <a href="https://github.com/Yomi/mtr-yum" target="_blank" class="btn btn-outline">
-                    <i class="fab fa-github"></i>GitHub 仓库
+                <a href="https://github.com/yomi-china/MTR-Yomi-Utility-Mod" target="_blank" class="btn btn-outline">
+                    <i class="fab fa-github"></i>GitHub
                 </a>
             </div>
         </div>
@@ -574,8 +615,8 @@
     
     <section class="section" id="features">
         <div class="container">
-            <h2 class="section-title">✨ 当前功能</h2>
-            <p class="section-subtitle">强大实用的功能，全面提升MTR游戏体验</p>
+            <h2 class="section-title">目前内容</h2>
+            <p class="section-subtitle">全面提升MTR模组电梯体验</p>
             
             <div class="card-container">
                 <div class="card">
@@ -583,15 +624,13 @@
                         <div class="card-icon">
                             <i class="fas fa-elevator"></i>
                         </div>
-                        <h3 class="card-title">电梯系统增强</h3>
+                        <h3 class="card-title">配置电梯更便捷</h3>
                     </div>
                     <div class="card-content">
-                        <p class="card-text">全面增强MTR电梯系统，提供更真实、更便捷的电梯体验。</p>
+                        <p class="card-text">MTR中，通常需要手动连接每个楼层的电梯组件并设置楼层，麻烦且效率低。本模组解决了这个问题。</p>
                         <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> <strong>电梯楼层自动设置器</strong> - 自动设置电梯轨道楼层编号</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>电梯按钮自动连接器</strong> - 一键连接所有电梯按钮</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>电梯到站指示灯</strong> - 电梯抵达时闪烁提醒</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>电梯楼层显示屏</strong> - 美观的楼层显示，支持自定义</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>电梯自动设置器</strong> - 自动设置电梯轨道楼层编号，方便快捷。</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>电梯部件自动连接器</strong> - 一键连接所有电梯按钮，到站灯，显示屏等。</li>
                         </ul>
                     </div>
                 </div>
@@ -606,28 +645,11 @@
                     <div class="card-content">
                         <p class="card-text">丰富的音效和显示选项，创造沉浸式铁路体验。</p>
                         <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> <strong>三菱 GPM/S 风格电梯按钮</strong> - 包含箭头、按钮和数字显示屏</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>电梯到站音效播放器</strong> - 支持自定义音频</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>蒂森克虏伯/三菱风格显示</strong> - 可锁定显示内容</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>自定义颜色与箭头样式</strong> - 完全按照您的喜好设置</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h3 class="card-title">实用工具集合</h3>
-                    </div>
-                    <div class="card-content">
-                        <p class="card-text">专为MTR玩家设计的一系列实用工具，大幅提升建造效率。</p>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> <strong>高度可配置性</strong> - 所有功能均可自定义</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>优化性能</strong> - 轻量级设计，资源占用低</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>MTR 3 专属</strong> - 完美适配最新版本</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>持续更新</strong> - 定期添加新功能和优化</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>电梯到站灯</strong> - 电梯抵达时闪烁提醒。</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>电梯楼层显示屏</strong> - 美观的楼层显示，支持自定义颜色和样式，多种风格。</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>三菱 GPM/S 风格电梯按钮</strong> - 包含箭头、按钮和数字显示，使用逼真的自定义字体。</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>蒂森克虏伯经典风格电梯按钮</strong> - 包含箭头、按钮和数字显示，使用逼真的自定义字体。</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>电梯到站提示音播放器</strong> - 内置了很多个逼真的提示音，刷右键可以选择并试听。</li>
                         </ul>
                     </div>
                 </div>
@@ -637,32 +659,32 @@
 
     <section class="section section-alt" id="upcoming">
         <div class="container">
-            <h2 class="section-title">🚧 即将上线</h2>
+            <h2 class="section-title">新内容</h2>
             <p class="section-subtitle">更多精彩功能正在火热开发中！</p>
             
             <div class="feature-grid">
                 <div class="feature-item upcoming">
                     <h4 class="feature-title">
-                        <i class="fas fa-palette"></i> 更多外呼面板样式
+                        <i class="fas fa-palette"></i> 更多外呼样式
                         <span class="badge badge-upcoming">开发中</span>
                     </h4>
-                    <p>基于现有外呼面板，新增蒂森、通力、迅达、奥的斯等多种风格（贴图制作中～）。</p>
+                    <p>基于现有外呼面板，新增通力、迅达、奥的斯等多种风格（贴图制作中～）。</p>
                 </div>
                 
                 <div class="feature-item upcoming">
                     <h4 class="feature-title">
-                        <i class="fas fa-bolt"></i> 简易接触网系统
+                        <i class="fas fa-bolt"></i> 简易接触网方块
                         <span class="badge badge-upcoming">开发中</span>
                     </h4>
-                    <p>方块化设计，包含直线和弯曲线路两种形式，类似「迷上城建」的道路标线。</p>
+                    <p>方块化设计，包含直线和弯曲线路两种形式，类似迷上城建模组的道路标线。</p>
                 </div>
                 
                 <div class="feature-item">
                     <h4 class="feature-title">
-                        <i class="fas fa-tv"></i> 智能 PIDS 显示屏
+                        <i class="fas fa-tv"></i> 灵动 PIDS 显示屏
                         <span class="badge badge-future">计划中</span>
                     </h4>
-                    <p>显示更多信息、支持动画效果和页面切换——这是远期计划，还请耐心等待哦！</p>
+                    <p>显示更多信息、支持动画效果和页面切换。</p>
                 </div>
                 
                 <div class="feature-item">
@@ -670,7 +692,7 @@
                         <i class="fas fa-lightbulb"></i> 更多创意功能
                         <span class="badge badge-future">构思中</span>
                     </h4>
-                    <p>🌟 未来更多精彩功能等你来发现！欢迎加入QQ群提供建议！</p>
+                    <p>未来更多精彩功能等你来发现！欢迎加入QQ群提供建议！（群号在下面）</p>
                 </div>
             </div>
         </div>
@@ -678,29 +700,23 @@
 
     <section class="section" id="screenshots">
         <div class="container">
-            <h2 class="section-title">🖼️ 效果展示</h2>
+            <h2 class="section-title">效果展示</h2>
             <p class="section-subtitle">看看YUM模组如何改变您的MTR体验</p>
             
             <div class="screenshot-grid">
                 <div class="screenshot-container">
-                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                         alt="电梯系统展示" 
-                         class="screenshot">
-                    <div class="caption">电梯系统增强功能</div>
+                    <div class="screenshot" style="background: linear-gradient(135deg, #00695c, #48a999);"></div>
+                    <div class="caption">图片还没拍</div>
                 </div>
                 
                 <div class="screenshot-container">
-                    <img src="https://images.unsplash.com/photo-1531685250784-7569952593d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                         alt="显示屏效果" 
-                         class="screenshot">
-                    <div class="caption">自定义楼层显示屏</div>
+                    <div class="screenshot" style="background: linear-gradient(135deg, #004d40, #39796b);"></div>
+                    <div class="caption">图片还没拍</div>
                 </div>
                 
                 <div class="screenshot-container">
-                    <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                         alt="按钮界面" 
-                         class="screenshot">
-                    <div class="caption">三菱风格电梯按钮</div>
+                    <div class="screenshot" style="background: linear-gradient(135deg, #00796b, #439889);"></div>
+                    <div class="caption">图片还没拍</div>
                 </div>
             </div>
         </div>
@@ -708,25 +724,25 @@
 
     <section class="download-section" id="download">
         <div class="container">
-            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px;">🎮 立即体验</h2>
-            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 20px;">快来体验更智能、更真实的铁路模拟吧！</p>
+            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px; font-weight: 500;">立即体验</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 20px; font-weight: 300;">也可以加入QQ群下载</p>
             
-            <div class="version-badge">最新版本 v1.2.0</div>
+            <div class="version-badge">最新版本是1.2.2，CurseForge更新会比Modrinth慢</div>
             
             <div class="btn-group">
                 <a href="https://modrinth.com/mod/mtr-yum/versions" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-light), var(--accent));">
                     <i class="material-icons">download</i>Modrinth 下载
                 </a>
-                <a href="https://www.curseforge.com/minecraft/mc-mods/mtr-yum" target="_blank" class="btn btn-outline">
-                    <i class="fab fa-uncharted"></i>CurseForge 下载
+                <a href="https://www.curseforge.com/minecraft/mc-mods/mtr-yomi-utility-mod" target="_blank" class="btn btn-outline">
+                    <i class="fab fa-uncharted"></i>CurseForge 下载（不推荐）
                 </a>
             </div>
             
             <div class="qq-group">
-                <h3><i class="fab fa-qq"></i> 加入QQ群获取最新测试版</h3>
+                <h3><i class="fab fa-qq"></i> 加入QQ群获取最新内测版！</h3>
                 <p>与开发者和其他玩家交流，获取最新测试版本和独家内容！</p>
                 <div class="qq-code">712460389</div>
-                <p>扫描二维码或搜索群号加入</p>
+                <p>扫描二维码（暂无）或搜索群号加入！</p>
             </div>
         </div>
     </section>
@@ -734,26 +750,25 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <h3 style="color: white; margin-bottom: 20px;">MTR Yomi 实用工具模组 (YUM)</h3>
-                <p>专为 MTR 3 设计的全能附属模组，让铁路建造更简单、更真实、更有趣！</p>
+                <h3 style="color: white; margin-bottom: 20px; font-weight: 500;">Yomi的MTR实用拓展</h3>
+                <p style="font-weight: 300;">MTR3的全新附属模组！</p>
                 
                 <div class="footer-links">
-                    <a href="https://github.com/Yomi/mtr-yum" class="footer-link" target="_blank">
+                    <a href="https://github.com/yomi-china/MTR-Yomi-Utility-Mod" class="footer-link" target="_blank">
                         <i class="fab fa-github"></i> GitHub
                     </a>
                     <a href="https://modrinth.com/mod/mtr-yum" class="footer-link" target="_blank">
                         <i class="fas fa-cube"></i> Modrinth
                     </a>
-                    <a href="https://discord.gg/example" class="footer-link" target="_blank">
-                        <i class="fab fa-discord"></i> Discord
+                    <a href="https://www.curseforge.com/minecraft/mc-mods/mtr-yomi-utility-mod" class="footer-link" target="_blank">
+                        <i class="fab fa-discord"></i> CurseForge
                     </a>
-                    <a href="https://www.mtrbbs.top" class="footer-link" target="_blank">
-                        <i class="fas fa-users"></i> MTRBBS
+                    <a href="https://www.mtrbbs.top/thread-7933-1-1.html" class="footer-link" target="_blank">
+                        <i class="fas fa-users"></i> MTRBBS帖子
                     </a>
                 </div>
                 
-                <p style="margin-top: 30px; opacity: 0.7;">© 2024 Yomi 的个人项目。Minecraft是Mojang Studios的商标。</p>
-                <p style="opacity: 0.7;">MTR (Minecraft Transit Railway) 是Jonathan的独立项目。</p>
+                <p style="margin-top: 30px; opacity: 0.7; font-weight: 300;">2026 Yomi_307</p>
             </div>
         </div>
     </footer>
@@ -773,12 +788,12 @@
         const cards = document.querySelectorAll('.card, .feature-item, .screenshot-container');
         cards.forEach(card => {
             card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-8px)';
-                card.style.boxShadow = '0 6px 20px rgba(0,0,0,0.15)';
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+                card.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
             });
             
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
+                card.style.transform = 'translateY(0) scale(1)';
                 card.style.boxShadow = '';
             });
         });

@@ -161,10 +161,9 @@
         }
         
         .main-title {
-            font-size: 3.5rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            height: 10rem; /* 保持与原有高度一致 */
+            overflow: hidden;
+            position: relative;
         }
         
         .main-subtitle {
@@ -425,7 +424,43 @@
             background-color: var(--info);
             color: white;
         }
+
+        .title-scroll {
+            display: flex;
+            flex-direction: column;
+            animation: titleScroll 5s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            position: relative;
+        }   
         
+        .title-line {
+            height: 10rem; /* 与主标题高度一致 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+            @keyframes titleScroll {
+        0%, 40% {
+            transform: translateY(0);
+        }
+        50%, 90% {
+            transform: translateY(-50%);
+        }
+        100% {
+            transform: translateY(0);
+        }
+
+        }
+        .warning-line {
+            color: #ff6b6b; /* 警告颜色，可以调整 */
+            text-shadow: 0 2px 10px rgba(255, 0, 0, 0.3);
+            white-space: nowrap; /* 强制不换行 */
+            overflow: hidden;
+            text-overflow: ellipsis; /* 如果文字太长，显示省略号 */
+            padding: 0 20px; /* 添加一些内边距，防止文字贴边 */
+        }
+
         /* 截图区域 - 适当圆角 */
         .screenshot-grid {
             display: grid;
@@ -599,7 +634,12 @@
     
     <section class="main">
         <div class="main-content">
-            <h1 class="main-title">Yomi的MTR实用拓展</h1>
+            <h1 class="main-title">
+                <span class="title-scroll">
+                    <span class="title-line">Yomi的MTR实用拓展</span>
+                    <span class="title-line warning-line">请勿从3DM站下载本模组，该站为盗搬，未经过本人同意！</span>
+                </span>
+            </h1>
             <p class="main-subtitle"><span class="highlight"></span>全新附属模组，适用于MTR3</p>
             <p class="main-subtitle">让MTR的电梯更加逼真</p>
             <div class="btn-group">
